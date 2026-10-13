@@ -10,9 +10,7 @@
   <img src="https://img.shields.io/badge/Streamlit-UI-FF4B4B?logo=streamlit&logoColor=white" alt="Streamlit">
 </p>
 
-\# 🤖 LangGraph Research \& Math Agent
-
-
+# 🤖 LangGraph Research & Math Agent
 
 An intelligent, local AI agent built with LangGraph that can reason, search the live internet, and solve complex math problems using tool calling.
 
@@ -21,19 +19,12 @@ An intelligent, local AI agent built with LangGraph that can reason, search the 
   <br><sub>The Streamlit chat UI: the agent searches the web, runs the calculator, and shows each tool result as it streams.</sub>
 </p>
 
+## ✨ Key Features
 
-
-\## ✨ Key Features
-
-\- \*\*Agentic Reasoning (ReAct):\*\* Uses the Reasoning + Acting loop to break down complex queries into executable steps.
-
-\- \*\*Dynamic Tool Calling:\*\* Equipped with a live web search (DuckDuckGo) and a Python-based calculator.
-
-\- \*\*100% Local \& Private:\*\* Powered by Ollama (Llama 3.2 / Qwen 2.5), ensuring zero data leaves your machine and zero API costs.
-
-\- \*\*Real-Time UI:\*\* Streamlit interface that visualizes the agent's "thought process" and tool usage step-by-step.
-
-
+- **Agentic Reasoning (ReAct):** Uses the Reasoning + Acting loop to break down complex queries into executable steps.
+- **Dynamic Tool Calling:** Equipped with a live web search (DuckDuckGo) and a Python-based calculator.
+- **100% Local & Private:** Powered by Ollama (Llama 3.2 / Qwen 2.5), ensuring zero data leaves your machine and zero API costs.
+- **Real-Time UI:** Streamlit interface that visualizes the agent's "thought process" and tool usage step-by-step.
 
 ## ⚙️ How It Works
 
@@ -41,34 +32,38 @@ An intelligent, local AI agent built with LangGraph that can reason, search the 
   <img src="docs/images/architecture.svg" alt="LangGraph ReAct graph: agent node, tools node, conditional routing" width="100%">
 </p>
 
+## 🛠️ Tech Stack
 
-\## 🛠️ Tech Stack
+- **Python 3.11+**
+- **LangGraph** (Stateful agentic workflows)
+- **LangChain** (Tool integration and message handling)
+- **Ollama** (Local LLM inference)
+- **DuckDuckGo Search** (Free, API-key-less web search)
+- **Streamlit** (Interactive Web UI)
 
-\- \*\*Python 3.11+\*\*
+## 🚀 Getting Started
 
-\- \*\*LangGraph\*\* (Stateful agentic workflows)
+### Prerequisites
+1. Install [Ollama](https://ollama.com/download) on your machine.
+2. Pull the required local model:
+   ```bash
+   ollama pull llama3.2
+   ```
 
-\- \*\*LangChain\*\* (Tool integration and message handling)
+### Installation
+```bash
+git clone https://github.com/tabhiabhishek/LangGraph-Agent.git
+cd LangGraph-Agent
+python -m venv venv
+venv\Scripts\activate        # Windows
+# source venv/bin/activate    # macOS / Linux
+pip install -r requirements.txt
+```
 
-\- \*\*Ollama\*\* (Local LLM inference)
+### Run the app
+```bash
+streamlit run app.py
+```
+Then open http://localhost:8501 in your browser.
 
-\- \*\*DuckDuckGo Search\*\* (Free, API-key-less web search)
-
-\- \*\*Streamlit\*\* (Interactive Web UI)
-
-
-
-\## 🚀 Getting Started
-
-
-
-\### Prerequisites
-
-1\. Install \[Ollama](https://ollama.com/download) on your machine.
-
-2\. Pull a capable local model (Qwen 2.5 is highly recommended for tool calling):
-
-&nbsp;  ```bash
-
-&nbsp;  ollama pull qwen2.5
-
+> 💡 To try another model (e.g. `qwen2.5`, which is very good at tool calling), pull it with Ollama and change the model name in `agent_graph.py`.

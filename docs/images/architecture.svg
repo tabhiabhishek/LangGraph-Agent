@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="470" viewBox="0 0 1280 470" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#4b5563"/>
+    </marker>
+    <marker id="arrG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#22c55e"/>
+    </marker>
+    <marker id="arrB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+  </defs>
+  <rect width="1280" height="470" rx="14" fill="#0f141a"/>
+  <rect x="0.5" y="0.5" width="1279" height="469" rx="14" fill="none" stroke="#2a323d"/>
+  <text x="40" y="52" font-size="22" font-weight="700" fill="#f3f4f6">How LangGraph Agent works</text>
+  <text x="40" y="78" font-size="14" fill="#9ca3af">create_react_agent builds a two-node graph: the LLM reasons, calls tools, and loops until it can answer</text>
+
+  <g font-size="15">
+    <!-- 1 UI -->
+    <rect x="40" y="130" width="200" height="150" rx="12" fill="#161c24" stroke="#2a323d"/>
+    <rect x="40" y="130" width="200" height="6" rx="3" fill="#a78bfa"/>
+    <text x="140" y="168" text-anchor="middle" font-weight="700" fill="#f3f4f6">1 · Streamlit UI</text>
+    <text x="140" y="200" text-anchor="middle" font-size="13" fill="#9ca3af">st.chat_input query</text>
+    <text x="140" y="222" text-anchor="middle" font-size="13" fill="#9ca3af">wrapped as HumanMessage</text>
+    <text x="140" y="244" text-anchor="middle" font-size="13" fill="#9ca3af">run_agent() stream</text>
+
+    <!-- 2 agent node -->
+    <rect x="290" y="130" width="210" height="150" rx="12" fill="#161c24" stroke="#166534"/>
+    <rect x="290" y="130" width="210" height="6" rx="3" fill="#22c55e"/>
+    <text x="395" y="168" text-anchor="middle" font-weight="700" fill="#f3f4f6">2 · agent node</text>
+    <text x="395" y="200" text-anchor="middle" font-size="13" fill="#9ca3af">ChatOllama (llama3.2)</text>
+    <text x="395" y="222" text-anchor="middle" font-size="13" fill="#9ca3af">temperature = 0</text>
+    <text x="395" y="244" text-anchor="middle" font-size="13" fill="#9ca3af">tools bound to the model</text>
+
+    <!-- decision diamond -->
+    <path d="M600 150 L660 205 L600 260 L540 205 Z" fill="#161c24" stroke="#f59e0b" stroke-width="1.5"/>
+    <text x="600" y="201" text-anchor="middle" font-size="13" font-weight="700" fill="#fbbf24">tool</text>
+    <text x="600" y="218" text-anchor="middle" font-size="13" font-weight="700" fill="#fbbf24">calls?</text>
+
+    <!-- 3 tools node -->
+    <rect x="720" y="130" width="230" height="150" rx="12" fill="#161c24" stroke="#2a323d"/>
+    <rect x="720" y="130" width="230" height="6" rx="3" fill="#38bdf8"/>
+    <text x="835" y="168" text-anchor="middle" font-weight="700" fill="#f3f4f6">3 · tools node</text>
+    <rect x="740" y="184" width="190" height="40" rx="8" fill="#0c2233" stroke="#075985"/>
+    <text x="835" y="201" text-anchor="middle" font-size="13" font-weight="600" fill="#7dd3fc">web_search</text>
+    <text x="835" y="217" text-anchor="middle" font-size="11" fill="#9ca3af">DuckDuckGoSearchRun</text>
+    <rect x="740" y="230" width="190" height="40" rx="8" fill="#2a1f0b" stroke="#92400e"/>
+    <text x="835" y="247" text-anchor="middle" font-size="13" font-weight="600" fill="#fbbf24">Calculator</text>
+    <text x="835" y="263" text-anchor="middle" font-size="11" fill="#9ca3af">eval() with math module</text>
+
+    <!-- 4 END -->
+    <rect x="1010" y="130" width="230" height="150" rx="12" fill="#161c24" stroke="#2a323d"/>
+    <rect x="1010" y="130" width="230" height="6" rx="3" fill="#ec4899"/>
+    <text x="1125" y="168" text-anchor="middle" font-weight="700" fill="#f3f4f6">4 · END</text>
+    <text x="1125" y="200" text-anchor="middle" font-size="13" fill="#9ca3af">Final AIMessage</text>
+    <text x="1125" y="222" text-anchor="middle" font-size="13" fill="#9ca3af">streamed into chat</text>
+    <text x="1125" y="244" text-anchor="middle" font-size="13" fill="#9ca3af">saved to session_state</text>
+  </g>
+
+  <!-- straight edges -->
+  <g stroke="#4b5563" stroke-width="2" marker-end="url(#arr)">
+    <line x1="242" y1="205" x2="286" y2="205"/>
+    <line x1="502" y1="205" x2="536" y2="205"/>
+  </g>
+  <!-- yes -> tools -->
+  <line x1="662" y1="205" x2="716" y2="205" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrB)"/>
+  <text x="689" y="196" text-anchor="middle" font-size="12" font-weight="600" fill="#7dd3fc">yes</text>
+  <!-- no -> END (over the top) -->
+  <path d="M600 148 V108 H1125 V126" fill="none" stroke="#22c55e" stroke-width="2" marker-end="url(#arrG)"/>
+  <rect x="826" y="98" width="128" height="20" rx="10" fill="#0f141a"/>
+  <text x="890" y="113" text-anchor="middle" font-size="12" font-weight="600" fill="#4ade80">no: answer is ready</text>
+  <!-- tools -> agent loop (underneath) -->
+  <path d="M835 282 V312 H395 V284" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrB)"/>
+  <rect x="530" y="302" width="170" height="20" rx="10" fill="#0f141a"/>
+  <text x="615" y="317" text-anchor="middle" font-size="12" font-weight="600" fill="#7dd3fc">ToolMessage back to the LLM</text>
+
+  <!-- bottom layer -->
+  <rect x="40" y="346" width="1200" height="96" rx="12" fill="#121820" stroke="#2a323d" stroke-dasharray="6 6"/>
+  <text x="64" y="378" font-size="13" font-weight="700" fill="#9ca3af" letter-spacing="1">STACK</text>
+  <g font-size="14" font-weight="600">
+    <rect x="64"   y="392" width="220" height="34" rx="8" fill="#1e2630"/><text x="174"  y="414" text-anchor="middle" fill="#d1d5db">LangGraph prebuilt ReAct</text>
+    <rect x="300"  y="392" width="220" height="34" rx="8" fill="#1e2630"/><text x="410"  y="414" text-anchor="middle" fill="#d1d5db">LangChain tools · messages</text>
+    <rect x="536"  y="392" width="220" height="34" rx="8" fill="#1e2630"/><text x="646"  y="414" text-anchor="middle" fill="#d1d5db">Ollama (local inference)</text>
+    <rect x="772"  y="392" width="220" height="34" rx="8" fill="#1e2630"/><text x="882"  y="414" text-anchor="middle" fill="#d1d5db">DuckDuckGo Search</text>
+    <rect x="1008" y="392" width="208" height="34" rx="8" fill="#1e2630"/><text x="1112" y="414" text-anchor="middle" fill="#d1d5db">Streamlit chat UI</text>
+  </g>
+</svg>

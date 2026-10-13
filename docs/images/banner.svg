@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="320" viewBox="0 0 1280 320" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f141a"/>
+      <stop offset="1" stop-color="#14202e"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22c55e"/>
+      <stop offset="1" stop-color="#38bdf8"/>
+    </linearGradient>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+  </defs>
+  <rect width="1280" height="320" rx="18" fill="url(#bg)"/>
+  <rect x="0.5" y="0.5" width="1279" height="319" rx="18" fill="none" stroke="#2a323d"/>
+
+  <!-- motif: ReAct loop graph (agent <-> tools) -->
+  <g>
+    <!-- start dot -->
+    <circle cx="76" cy="160" r="9" fill="#22c55e"/>
+    <path d="M88 160 h26" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" marker-end="url(#ah)"/>
+    <!-- agent node -->
+    <rect x="124" y="126" width="96" height="68" rx="14" fill="#161c24" stroke="url(#accent)" stroke-width="2.5"/>
+    <text x="172" y="156" text-anchor="middle" font-size="15" font-weight="700" fill="#f3f4f6">agent</text>
+    <text x="172" y="176" text-anchor="middle" font-size="12" fill="#9ca3af">LLM</text>
+    <!-- loop to tools -->
+    <path d="M190 124 C 200 72, 270 72, 280 108" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" marker-end="url(#ah)"/>
+    <path d="M280 212 C 270 248, 200 248, 190 200" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" marker-end="url(#ah)"/>
+    <!-- tools node -->
+    <rect x="248" y="112" width="84" height="96" rx="14" fill="#161c24" stroke="#2a323d" stroke-width="1.5"/>
+    <text x="290" y="138" text-anchor="middle" font-size="13" font-weight="700" fill="#f3f4f6">tools</text>
+    <rect x="260" y="148" width="60" height="22" rx="6" fill="#0c2233"/>
+    <text x="290" y="164" text-anchor="middle" font-size="11" fill="#7dd3fc">search</text>
+    <rect x="260" y="176" width="60" height="22" rx="6" fill="#2a1f0b"/>
+    <text x="290" y="192" text-anchor="middle" font-size="11" fill="#fbbf24">calc</text>
+  </g>
+
+  <text x="380" y="150" font-size="60" font-weight="700" fill="#f3f4f6">LangGraph <tspan fill="url(#accent)">Agent</tspan></text>
+  <text x="382" y="196" font-size="24" fill="#9ca3af">A local ReAct agent that searches the live web and solves math with tools</text>
+
+  <g font-size="15" font-weight="600">
+    <rect x="382" y="226" width="118" height="32" rx="16" fill="#0f2a1c" stroke="#166534"/>
+    <text x="441" y="247" text-anchor="middle" fill="#4ade80">LangGraph</text>
+    <rect x="512" y="226" width="176" height="32" rx="16" fill="#0c2233" stroke="#075985"/>
+    <text x="600" y="247" text-anchor="middle" fill="#7dd3fc">Ollama · Llama 3.2</text>
+    <rect x="700" y="226" width="130" height="32" rx="16" fill="#2a1f0b" stroke="#92400e"/>
+    <text x="765" y="247" text-anchor="middle" fill="#fbbf24">DuckDuckGo</text>
+    <rect x="842" y="226" width="118" height="32" rx="16" fill="#241433" stroke="#6b21a8"/>
+    <text x="901" y="247" text-anchor="middle" fill="#d8b4fe">Streamlit</text>
+    <rect x="972" y="226" width="126" height="32" rx="16" fill="#1e2630" stroke="#2a323d"/>
+    <text x="1035" y="247" text-anchor="middle" fill="#d1d5db">LangChain</text>
+  </g>
+</svg>
